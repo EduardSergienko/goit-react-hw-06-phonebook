@@ -1,7 +1,9 @@
 import styles from 'components/ContactList/contactList.module.scss';
 import PropTypes from 'prop-types';
 import { ContactItem } from 'components/ContactItem/contactItem';
-export const ContactList = ({ contacts, onDeleteBtnClick }) => {
+import { connect } from 'react-redux/es/exports';
+import { deleteContact } from 'redux/contacts/contacts-actions';
+const ContactList = ({ contacts, onDeleteBtnClick }) => {
   return (
     <ul className={styles.contactList}>
       {contacts.map(({ id, name, number }) => {
@@ -25,3 +27,12 @@ ContactList.propTypes = {
     })
   ),
 };
+
+const mapStateToProps = state => ({
+  contacts: state.contacts.items,
+});
+
+const mapDispatchToProps = dispatch => ({
+  onDeleteBtnClick: id => dispatch(deleteContact(id)),
+});
+export default connect(mapStateToProps, mapDispatchToProps)(ContactList);

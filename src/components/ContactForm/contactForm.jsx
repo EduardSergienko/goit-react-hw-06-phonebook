@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
 import styles from './contactForm.module.scss';
-
-export default function ContactForm({ onSubmit }) {
+import { connect } from 'react-redux/es/exports';
+import { addContact } from '../../redux/contacts/contacts-actions';
+function ContactForm({ onSubmit }) {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
 
@@ -67,3 +68,7 @@ export default function ContactForm({ onSubmit }) {
 ContactForm.propTypes = {
   onSubmit: PropTypes.func.isRequired,
 };
+const mapDispatchToProps = dispatch => ({
+  onSubmit: data => dispatch(addContact(data)),
+});
+export default connect(null, mapDispatchToProps)(ContactForm);
