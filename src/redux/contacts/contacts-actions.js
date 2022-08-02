@@ -12,15 +12,4 @@ export const addContact = createAction('contacts/add', data => {
   };
 });
 export const deleteContact = createAction('contacts/delete');
-// export default { addContact };
-// const addContact = data => {
-//   const { name, number } = data;
-//   return {
-//     type: 'contacts/add',
-//     payload: {
-//       id: nanoid(),
-//       name,
-//       number,
-//     },
-//   };
-// };
+export const changeFilter = createAction('filter/change');
