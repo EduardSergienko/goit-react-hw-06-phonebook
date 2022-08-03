@@ -1,8 +1,11 @@
 import styles from 'components/Filter/filter.module.scss';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux/es/exports';
+// import PropTypes from 'prop-types';
 import { changeFilter } from 'redux/contacts/contacts-actions';
-const Filter = ({ onChange, value, contacts }) => {
+import { useSelector, useDispatch } from 'react-redux/es/exports';
+export const Filter = () => {
+  const value = useSelector(state => state.contacts.filter);
+  const contacts = useSelector(state => state.contacts.items);
+  const dispatch = useDispatch();
   return (
     <>
       {contacts.length > 1 && (
@@ -10,7 +13,7 @@ const Filter = ({ onChange, value, contacts }) => {
           Find contacts by name
           <input
             className={styles.filter}
-            onChange={onChange}
+            onChange={e => dispatch(changeFilter(e.currentTarget.value))}
             type="text"
             value={value}
           />
@@ -20,16 +23,7 @@ const Filter = ({ onChange, value, contacts }) => {
   );
 };
 
-Filter.propTypes = {
-  onChange: PropTypes.func.isRequired,
-  value: PropTypes.string.isRequired,
-};
-const mapStateToProps = state => ({
-  value: state.contacts.filter,
-  contacts: state.contacts.items,
-});
-
-const mapDispatchToProps = dispatch => ({
-  onChange: e => dispatch(changeFilter(e.currentTarget.value)),
-});
-export default connect(mapStateToProps, mapDispatchToProps)(Filter);
+// Filter.propTypes = {
+//   // onChange: PropTypes.func.isRequired,
+//   // value: PropTypes.string.isRequired,
+// };
