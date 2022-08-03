@@ -1,10 +1,11 @@
 import styles from 'components/Filter/filter.module.scss';
-// import PropTypes from 'prop-types';
 import { changeFilter } from 'redux/contacts/contacts-actions';
 import { useSelector, useDispatch } from 'react-redux/es/exports';
+import { getValue, getContacts } from 'redux/contacts/contacts-selectors';
+
 export const Filter = () => {
-  const value = useSelector(state => state.contacts.filter);
-  const contacts = useSelector(state => state.contacts.items);
+  const value = useSelector(getValue);
+  const contacts = useSelector(getContacts);
   const dispatch = useDispatch();
   return (
     <>
@@ -22,8 +23,3 @@ export const Filter = () => {
     </>
   );
 };
-
-// Filter.propTypes = {
-//   // onChange: PropTypes.func.isRequired,
-//   // value: PropTypes.string.isRequired,
-// };

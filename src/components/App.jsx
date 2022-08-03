@@ -1,8 +1,6 @@
-// import { useState } from 'react';
-// import { nanoid } from 'nanoid';
 import ContactForm from './ContactForm/contactForm';
 import { Filter } from './Filter/filter';
-import ContactList from './ContactList/contactList';
+import { ContactList } from './ContactList/contactList';
 import styles from './appWrap.module.scss';
 // import useLocalStorage from '../Hooks/useLocalStorage';
 
