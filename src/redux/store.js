@@ -26,14 +26,6 @@ const contactsSlice = createSlice({
   reducers: {
     addContact: {
       reducer: (state, action) => {
-        if (
-          state.items.some(
-            contact =>
-              contact.name.toLowerCase() === action.payload.name.toLowerCase()
-          )
-        ) {
-          return alert(`${action.payload.name} is already in contacts`);
-        }
         state.items.push(action.payload);
       },
       prepare: data => {
@@ -62,6 +54,7 @@ const contactsSlice = createSlice({
 const persistConfig = {
   key: 'contacts',
   storage,
+  whitelist: ['items'],
 };
 
 const persistedReducer = persistReducer(persistConfig, contactsSlice.reducer);
