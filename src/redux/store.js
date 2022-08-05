@@ -1,5 +1,4 @@
 import { configureStore, createSlice } from '@reduxjs/toolkit';
-// import contactsReducer from './contacts/contacts-reducer';
 import { nanoid } from 'nanoid';
 import {
   persistStore,
@@ -36,7 +35,6 @@ const contactsSlice = createSlice({
           return alert(`${action.payload.name} is already in contacts`);
         }
         state.items.push(action.payload);
-        // return [...state.contacts.items, action.payload];
       },
       prepare: data => {
         const { name, number } = data;
@@ -60,7 +58,6 @@ const contactsSlice = createSlice({
     },
   },
 });
-console.log(contactsSlice);
 
 const persistConfig = {
   key: 'contacts',
